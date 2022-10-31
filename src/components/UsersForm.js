@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./Users.modal.css";
-import NewUsers from "./NewUsers";
+
 
 const UsersForm = (props) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -18,6 +19,7 @@ const UsersForm = (props) => {
 
     setName("");
     setAge(""); //reset inputa
+    props.onAddUser(name, age);
   };
 
   const usernameHandler = (e) => {
@@ -32,14 +34,13 @@ const UsersForm = (props) => {
     <div>
       <form onSubmit={submitHandler} className="wrapper">
         <label>Username</label>
-        <input value={name} onChange={usernameHandler} type="text" />
+        <input onChange={usernameHandler} type="text" />
         <label>Age(Years)</label>
-        <input value={age} onChange={userAgeHandler} type="number" />
+        <input onChange={userAgeHandler} type="number" />
         <button type="submit" className="btn">
           Add User
         </button>
       </form>
-      <NewUsers name={name} age={age} />
     </div>
   );
 };

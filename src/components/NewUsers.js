@@ -1,18 +1,20 @@
-import { Fragment } from "react";
-import AddedUsers from "./AddedUsers";
+import React from "react";
+import "./NewUsers.css";
 
 function NewUsers(props) {
-  // const [showComponent, setShowComponent] = useState(false);
+  // const [showComponent, setShowComponent] = useStateasdasdasd(false);
   // const showEditComponent = () => {
   //   setShowComponent(true);
   // };
- 
+  // console.log(props.users((user) => user.name));
+  console.log(props);
   return (
     <ul>
-      {props.items.map((item) => {
-        <AddedUsers key={item.id} name={item.username} age={item.userage} />;
-      })}
-
+      {props.users.map((user) => (
+        <li className="wrapper">
+          {user.name} ({user.age} years old)
+        </li>
+      ))}
     </ul>
   );
 }
@@ -21,7 +23,7 @@ export default NewUsers;
 
 // for (const expense of props.expenses) {
 //   const expenseMonth = expense.date.getMonth();
-//   chartDataPoints[expenseMonth].value += expense.amount; 
+//   chartDataPoints[expenseMonth].value += expense.amount;
 // }
 
 // return <Chart dataPoints={chartDataPoints} />;
