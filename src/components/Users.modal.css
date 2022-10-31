@@ -1,0 +1,21 @@
+.wrapper{
+    width: 50%;
+    height: 13em;
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 14px 14px 14px 14px;
+}
+.btn{
+    width: 120px;
+    height: 30px;
+    border-radius: 9px 9px 9px 9px;
+    background-color: rgb(167, 33, 167);
+    color: white;
+    /* margin: 0 auto; */
+    margin-top: 20px;
+    font-weight:900;
+}
