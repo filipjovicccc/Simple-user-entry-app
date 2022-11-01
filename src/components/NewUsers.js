@@ -11,7 +11,7 @@ function NewUsers(props) {
   return (
     <ul>
       {props.users.map((user) => (
-        <li className="wrapper">
+        <li key={user.id} className="wrapper">
           {user.name} ({user.age} years old)
         </li>
       ))}

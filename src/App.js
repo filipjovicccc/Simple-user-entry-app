@@ -7,7 +7,10 @@ function App() {
   const [items, setItems] = useState([]);
   const addUserHandler = (uName, uAge) => {
     setItems((prevUsers) => {
-      return [...prevUsers, { name: uName, age: uAge }];
+      return [
+        ...prevUsers,
+        { name: uName, age: uAge, id: Math.random().toString() },
+      ];
     });
   };
   return (

@@ -1,42 +1,57 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import ErorModal from "./UI/ErorModal";
 import "./Users.modal.css";
 
-
 const UsersForm = (props) => {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const nameEvent = useRef();
+  const ageEvent = useRef();
+  const [error, setError] = useState();
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const name = nameEvent.current.value;
+    const age = ageEvent.current.value;
 
     if (name.trim().length === 0 || age.trim().length === 0) {
+      setError({
+        title: "Invalid Input",
+        message: "Please enter a valid name and age (non-empty-values).",
+      });
       return;
     }
     if (+age < 1) {
+      setError({
+        title: "Invalid age",
+        message: "Please enter a valid age greater than 0.",
+      });
+
       return;
     }
     //validacija inputa
 
-    setName("");
-    setAge(""); //reset inputa
+    nameEvent.current.value = "";
+    ageEvent.current.value = ""; //reset inputa
     props.onAddUser(name, age);
   };
 
-  const usernameHandler = (e) => {
-    setName(e.target.value);
+  const errorHandler = () => {
+    setError(null);
   };
-
-  const userAgeHandler = (e) => {
-    setAge(e.target.value);
-  };
-
   return (
     <div>
+      {error && (
+        <ErorModal
+          tittle={error.title}
+          message={error.message}
+          onClick={errorHandler}
+        />
+      )}
+
       <form onSubmit={submitHandler} className="wrapper">
         <label>Username</label>
-        <input onChange={usernameHandler} type="text" />
+        <input ref={nameEvent} type="text" />
         <label>Age(Years)</label>
-        <input onChange={userAgeHandler} type="number" />
+        <input ref={ageEvent} type="number" />
         <button type="submit" className="btn">
           Add User
         </button>
